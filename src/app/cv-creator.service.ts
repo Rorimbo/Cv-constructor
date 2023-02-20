@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { observable, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -10,5 +10,13 @@ export class CvCreatorService {
 
   getCityList() {
     return this.http.get('assets/cities.json');
+  }
+
+  send(form: any) {
+    return new Observable((sub) => {
+      console.log(form);
+      sub.next();
+      sub.complete();
+    });
   }
 }

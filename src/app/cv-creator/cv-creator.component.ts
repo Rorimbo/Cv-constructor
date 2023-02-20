@@ -1,15 +1,9 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import {
-  FormControl,
-  FormGroup,
-  Validators,
-  FormBuilder,
-} from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { CityDialogComponent } from '../city-dialog/city-dialog.component';
-import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import { CvCreatorService } from '../cv-creator.service';
 
 @Component({
   selector: 'app-cv-creator',
@@ -32,7 +26,7 @@ export class CvCreatorComponent {
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
 
-  constructor(public dialog: MatDialog, private _formBuilder: FormBuilder) {
+  constructor(public dialog: MatDialog, private service: CvCreatorService) {
     /*   this.form = new FormGroup({
       surname: new FormControl('', [Validators.required]),
       name: new FormControl('', [Validators.required]),
@@ -47,8 +41,8 @@ export class CvCreatorComponent {
     this.firstFormGroup = new FormGroup({
       surname: new FormControl('', [Validators.required]),
       name: new FormControl('', [Validators.required]),
-      gender: new FormControl('', [Validators.required]),
       city: new FormControl('', [Validators.required]),
+      gender: new FormControl('', [Validators.required]),
     });
 
     this.secondFormGroup = new FormGroup({
@@ -66,10 +60,6 @@ export class CvCreatorComponent {
       notification: new FormControl('', []),
     });
   }
-  /* 
-  getFormControl(formControlName: string) {
-    return this.form.get(formControlName);
-  } */
 
   // () => {}
 
@@ -84,6 +74,23 @@ export class CvCreatorComponent {
       this.thirdFormGroup.invalid
     );
   }
+
+  send() {
+    let cvValues = {
+      surname: this.firstFormGroup.controls['surname'].value,
+      name: this.firstFormGroup.controls['name'].value,
+      city: this.firstFormGroup.controls['city'].value,
+      gender: this.firstFormGroup.controls['gender'].value,
+      email: this.secondFormGroup.controls['email'].value,
+      phone: this.secondFormGroup.controls['phone'].value,
+      address: this.secondFormGroup.controls['address'].value,
+      date: this.secondFormGroup.controls['date'].value,
+      agreement: this.thirdFormGroup.controls['agreement'].value,
+      notification: this.thirdFormGroup.controls['notification'].value,
+    };
+    this.service.send(cvValues).subscribe();
+  }
+
   /* 
   openDialog() {
     let config = {

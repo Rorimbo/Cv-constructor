@@ -110,7 +110,7 @@
         errorMessage="Поля заполнены не все"
       >
         <form [formGroup]="secondFormGroup">
-          <ng-template matStepLabel>Контактная инфомрация</ng-template>
+          <ng-template matStepLabel>Контактная информация</ng-template>
 
           <div>
             <mat-form-field class="" appearance="fill">
@@ -260,13 +260,6 @@
 
           <div>
             <button mat-button matStepperPrevious>Назад</button>
-            <button
-              mat-button
-              matStepperNext
-              [disabled]="thirdFormGroup.invalid"
-            >
-              Далее
-            </button>
           </div>
         </form>
       </mat-step>
@@ -447,6 +440,8 @@
         <button mat-button color="basic" (click)="switchMode()">
           Редактировать
         </button>
+
+        <button mat-button color="primary" (click)="send()">Отправить</button>
         <!-- <button mat-button color="accent" (click)="openPDF()">Скачать</button>-->
       </div>
     </div>
