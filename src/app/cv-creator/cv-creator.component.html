@@ -1,0 +1,454 @@
+<div class="common">
+  <div *ngIf="!isOnPreview">
+    <div class="title">
+      <h1>Ваше резюме</h1>
+    </div>
+    <mat-vertical-stepper [linear]="false" #stepper animationDuration="2000">
+      <mat-step
+        [stepControl]="firstFormGroup"
+        errorMessage="Поля заполнены не все"
+      >
+        <form [formGroup]="firstFormGroup">
+          <ng-template matStepLabel>Основная информация</ng-template>
+
+          <div>
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="Фамилия"
+                formControlName="surname"
+                required
+              />
+            </mat-form-field>
+
+            <mat-error
+              *ngIf="
+                firstFormGroup.controls['surname'].hasError('required') &&
+                firstFormGroup.controls['surname'].touched
+              "
+            >
+              Обязательное поле
+            </mat-error>
+          </div>
+
+          <div>
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="Имя"
+                formControlName="name"
+                required
+              />
+            </mat-form-field>
+
+            <mat-error
+              *ngIf="
+                firstFormGroup.controls['name'].hasError('required') &&
+                firstFormGroup.controls['name'].touched
+              "
+            >
+              Обязательное поле
+            </mat-error>
+          </div>
+
+          <div class="">
+            <mat-form-field class="form">
+              <input matInput placeholder="Город" formControlName="city" />
+              <button
+                matSuffix
+                mat-icon-button
+                aria-label="Clear"
+                (click)="openDialog()"
+              >
+                ...
+              </button>
+            </mat-form-field>
+
+            <mat-error
+              *ngIf="
+                firstFormGroup.controls['city'].hasError('required') &&
+                firstFormGroup.controls['city'].touched
+              "
+            >
+              Обязательное поле
+            </mat-error>
+          </div>
+
+          <div class="gender">
+            <div class="gender-text">
+              <mat-label>Пол:</mat-label>
+            </div>
+
+            <mat-radio-group
+              aria-label="Select an option"
+              formControlName="gender"
+              class="gender-radio"
+            >
+              <mat-radio-button class="radio" value="Мужской">
+                <label class="radio-variant">Мужской</label>
+              </mat-radio-button>
+              <mat-radio-button class="radio" value="Женский">
+                <label class="radio-variant">Женский</label>
+              </mat-radio-button>
+            </mat-radio-group>
+          </div>
+
+          <div>
+            <button
+              mat-button
+              matStepperNext
+              [disabled]="firstFormGroup.invalid"
+            >
+              Далее
+            </button>
+          </div>
+        </form>
+      </mat-step>
+
+      <mat-step
+        [stepControl]="secondFormGroup"
+        errorMessage="Поля заполнены не все"
+      >
+        <form [formGroup]="secondFormGroup">
+          <ng-template matStepLabel>Контактная инфомрация</ng-template>
+
+          <div>
+            <mat-form-field class="" appearance="fill">
+              <input
+                type="email"
+                matInput
+                placeholder="E-mail"
+                formControlName="email"
+              />
+            </mat-form-field>
+
+            <mat-error
+              *ngIf="
+                secondFormGroup.controls['email'].hasError('email') &&
+                !secondFormGroup.controls['email'].hasError('required') &&
+                secondFormGroup.controls['email'].touched
+              "
+            >
+              Пожалуйста, введите корректный email
+            </mat-error>
+
+            <mat-error
+              *ngIf="
+                secondFormGroup.controls['email'].hasError('required') &&
+                secondFormGroup.controls['email'].touched
+              "
+            >
+              Обязательное поле
+            </mat-error>
+          </div>
+
+          <div>
+            <mat-form-field class="">
+              <span matPrefix>+7 &nbsp;</span>
+              <input
+                type="tel"
+                matInput
+                placeholder="Телефон"
+                formControlName="phone"
+              />
+            </mat-form-field>
+
+            <mat-error
+              *ngIf="
+                !secondFormGroup.controls['phone'].hasError('required') &&
+                secondFormGroup.controls['phone'].hasError('pattern') &&
+                secondFormGroup.controls['phone'].touched
+              "
+            >
+              Некорректный номер
+            </mat-error>
+
+            <mat-error
+              *ngIf="
+                secondFormGroup.controls['phone'].hasError('required') &&
+                secondFormGroup.controls['phone'].touched
+              "
+            >
+              Обязательное поле
+            </mat-error>
+          </div>
+
+          <div>
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="Адрес"
+                formControlName="address"
+                required
+              />
+            </mat-form-field>
+
+            <mat-error
+              *ngIf="
+                secondFormGroup.controls['address'].hasError('required') &&
+                secondFormGroup.controls['address'].touched
+              "
+            >
+              Обязательное поле
+            </mat-error>
+          </div>
+
+          <div class="">
+            <mat-form-field appearance="fill">
+              <input
+                matInput
+                [matDatepicker]="picker"
+                placeholder="Дата рождения"
+                formControlName="date"
+              />
+
+              <mat-datepicker-toggle
+                matIconSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
+
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-error
+              *ngIf="
+                secondFormGroup.controls['date'].hasError('required') &&
+                secondFormGroup.controls['date'].touched
+              "
+            >
+              Выберите дату
+            </mat-error>
+          </div>
+
+          <div>
+            <button mat-button matStepperPrevious>Назад</button>
+            <button
+              mat-button
+              matStepperNext
+              [disabled]="secondFormGroup.invalid"
+            >
+              Далее
+            </button>
+          </div>
+        </form>
+      </mat-step>
+
+      <mat-step
+        [stepControl]="thirdFormGroup"
+        errorMessage="Соглашение не подтверждено"
+      >
+        <form [formGroup]="thirdFormGroup">
+          <ng-template matStepLabel>Обработка данных</ng-template>
+
+          <p>
+            <mat-checkbox formControlName="agreement"
+              >Подтверждаю согласие на обработку персональных данных </mat-checkbox
+            ><mat-error
+              *ngIf="
+                thirdFormGroup.controls['agreement'].hasError('required') &&
+                thirdFormGroup.controls['agreement'].touched
+              "
+            >
+              Обязательное поле
+            </mat-error>
+          </p>
+          <p>
+            <mat-checkbox formControlName="notification"
+              >Оповещать об уведомлениях</mat-checkbox
+            >
+          </p>
+
+          <div>
+            <button mat-button matStepperPrevious>Назад</button>
+            <button
+              mat-button
+              matStepperNext
+              [disabled]="thirdFormGroup.invalid"
+            >
+              Далее
+            </button>
+          </div>
+        </form>
+      </mat-step>
+    </mat-vertical-stepper>
+
+    <!--
+      <div class="info">
+        <div class="subtitle">
+          <h2>Контактные данные</h2>
+        </div>
+
+        <div class="input">
+          <label class="label"> Фамилия </label>
+          <mat-form-field class="form">
+            <input matInput formControlName="surname" />
+          </mat-form-field>
+        </div>
+
+        <div class="input">
+          <label class="label"> Имя </label>
+          <mat-form-field class="form">
+            <input matInput formControlName="name" />
+          </mat-form-field>
+        </div>
+
+        <div class="input">
+          <label class="label"> Город </label>
+          <mat-form-field class="form">
+            <input matInput formControlName="city" />
+            <button
+              matSuffix
+              mat-icon-button
+              aria-label="Clear"
+              (click)="openDialog()"
+            >
+              ...
+            </button>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="info">
+        <div class="subtitle">
+          <h2>Основная информация</h2>
+        </div>
+
+        <div class="date">
+          <mat-form-field appearance="fill">
+            <mat-label class="mat-label">Дата рождения</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="date" />
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <div class="gender">
+          <div class="gender-text">Пол:</div>
+          <mat-radio-group
+            aria-label="Select an option"
+            formControlName="gender"
+            class="gender-radio"
+          >
+            <mat-radio-button class="radio" value="Мужской">
+              Мужской
+            </mat-radio-button>
+            <mat-radio-button class="radio" value="Женский">
+              Женский
+            </mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <div class="exp">
+          <div class="exp-text">Опыт работы:</div>
+          <mat-radio-group
+            aria-label="Select an option"
+            formControlName="exp"
+            class="exp-radio"
+          >
+            <mat-radio-button class="radio" value="Есть опыт">
+              Есть опыт работы
+            </mat-radio-button>
+            <mat-radio-button class="radio" value="Без опыта">
+              Нет опыта работы
+            </mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <div *ngIf="this.form.value['exp'] == 'Без опыта'">
+          <p class="not-exp">
+            80% работодателей не рассматривают кандидатов без опыта работы.
+            Рекомендуем указать опыт или объяснить почему его нет, выбрав
+            причину из предложенных или описав свою.
+          </p>
+          <mat-form-field>
+            <mat-label>Расскажите о себе</mat-label>
+            <textarea
+              matInput
+              cdkTextareaAutosize
+              cdkAutosizeMinRows="5"
+              cdkAutosizeMaxRows="10"
+              formControlName="about"
+            ></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+      -->
+
+    <div class="btn">
+      <button
+        mat-button
+        color="primary"
+        type="submit"
+        (click)="switchMode()"
+        [disabled]="checkIfButtonDisabled()"
+      >
+        Предпросмотр
+      </button>
+    </div>
+  </div>
+
+  <div class="answer" *ngIf="isOnPreview">
+    <div id="htmlData">
+      <div class="fio">
+        {{
+          this.firstFormGroup.value["surname"] +
+            " " +
+            this.firstFormGroup.value["name"]
+        }}
+      </div>
+
+      <div class="gender">
+        {{ this.getGender() }}
+      </div>
+
+      <div class="age">{{ this.getAge() }}</div>
+      <div class="age">{{ this.getAgeText() }}</div>
+
+      <div class="date">
+        {{ this.getDateRow() }}
+      </div>
+
+      <div class="city">{{ this.firstFormGroup.value["city"] }}</div>
+
+      <div class="email">{{ this.secondFormGroup.value["email"] }}</div>
+      <div class="phone">{{ this.secondFormGroup.value["phone"] }}</div>
+      <div class="address">{{ this.secondFormGroup.value["address"] }}</div>
+
+      <!-- 
+  <div class="answer" *ngIf="isOnPreview">
+    <div id="htmlData">
+      <div class="fio">
+        {{ this.form.value["surname"] + " " + this.form.value["name"] }}
+      </div>
+
+      <div class="gender">
+        {{ this.form.value["gender"] == "Мужской" ? "Мужчина," : "Женщина," }}
+      </div>
+
+      <div class="age">{{ this.getAge() }} года</div>
+
+      <div class="date">
+        {{ this.getDateRow() }}
+      </div>
+
+      <div class="city">{{ this.form.value["city"] }}</div>
+
+      <div class="exp">
+        {{ this.form.value["exp"] }}
+      </div>
+
+      <div class="about">{{ this.form.value["about"] }}</div>
+    </div> -->
+
+      <div class="btn">
+        <button mat-button color="basic" (click)="switchMode()">
+          Редактировать
+        </button>
+        <!-- <button mat-button color="accent" (click)="openPDF()">Скачать</button>-->
+      </div>
+    </div>
+  </div>
+</div>

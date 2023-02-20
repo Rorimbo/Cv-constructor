@@ -1,0 +1,123 @@
+.common {
+  display: flex;
+  justify-content: center;
+}
+
+.title {
+  text-align: center;
+  margin-top: 2vh;
+}
+
+.mat-mdc-form-field {
+  width: 100%;
+}
+
+/*.info {
+  width: 35vw;
+}
+
+.form {
+  width: 100%;
+}
+
+.input {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2vh;
+}
+
+.mat-mdc-form-field-subscript-wrapper,
+.mat-mdc-form-field-bottom-align,
+.ng-tns-c67-0 {
+  width: 0%;
+}
+
+.label {
+  width: 25%;
+  margin-bottom: 14px;
+  font-size: 16px;
+}
+
+.mat-label {
+  font-size: 16px;
+}
+
+.gender {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 1vh;
+}
+
+.gender-text {
+  font-size: 16px;
+  margin-top: 2%;
+}
+
+.gender-radio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.exp {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1vh;
+}
+
+.exp-text {
+  font-size: 16px;
+}
+
+.exp-radio {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+} */
+
+.answer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2vh;
+}
+
+.fio {
+  font-size: 22px;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+}
+
+.mat-step-header {
+  margin-bottom: 1.5em;
+}
+
+.gender {
+  display: flex;
+  align-items: center;
+  margin-left: 1em;
+}
+
+.gender-text {
+  font-size: 16px;
+}
+
+.gender-radio {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 2em;
+}
+
+.radio {
+  display: flex;
+  justify-content: space-between;
+}
+
+.radio-variant {
+  font-size: 16px;
+}

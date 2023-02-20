@@ -1,0 +1,11 @@
+.regions {
+  max-height: 400px;
+  overflow-y: scroll;
+}
+
+.btn-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 15px;
+}
