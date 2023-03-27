@@ -1,103 +1,38 @@
-.common {
+.resume {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 .title {
   text-align: center;
-  margin-top: 2vh;
+}
+
+.mat-stepper-vertical {
+  margin-bottom: 1em;
 }
 
 .mat-mdc-form-field {
   width: 100%;
 }
 
-/*.info {
-  width: 35vw;
+.mat-mdc-form-field-error {
+  margin-left: 1em;
+  margin-bottom: 1em;
 }
 
-.form {
-  width: 100%;
+.btn-basic {
+  margin-top: 1em;
 }
 
-.input {
-  display: flex;
-  align-items: center;
-  margin-bottom: 2vh;
-}
-
-.mat-mdc-form-field-subscript-wrapper,
-.mat-mdc-form-field-bottom-align,
-.ng-tns-c67-0 {
-  width: 0%;
-}
-
-.label {
-  width: 25%;
-  margin-bottom: 14px;
-  font-size: 16px;
-}
-
-.mat-label {
-  font-size: 16px;
+.phone span {
+  margin-left: 1em;
 }
 
 .gender {
-  display: flex;
-  align-items: flex-start;
-  margin-bottom: 1vh;
-}
-
-.gender-text {
-  font-size: 16px;
-  margin-top: 2%;
-}
-
-.gender-radio {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.exp {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 1vh;
-}
-
-.exp-text {
-  font-size: 16px;
-}
-
-.exp-radio {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
-} */
-
-.answer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 2vh;
-}
-
-.fio {
-  font-size: 22px;
-}
-
-.btn {
-  display: flex;
-  justify-content: center;
-}
-
-.mat-step-header {
-  margin-bottom: 1.5em;
-}
-
-.gender {
-  display: flex;
   align-items: center;
   margin-left: 1em;
 }
@@ -106,18 +41,52 @@
   font-size: 16px;
 }
 
-.gender-radio {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-left: 2em;
-}
-
 .radio {
-  display: flex;
-  justify-content: space-between;
+  margin-left: 2em;
+  margin-right: 2em;
 }
 
-.radio-variant {
+.radio-text {
   font-size: 16px;
+}
+
+.preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container {
+  width: 30vw;
+  height: fit-content;
+  background-color: #424242;
+  padding: 2em;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.container-preview {
+  line-height: 2em;
+  margin-bottom: 2em;
+}
+
+.fio {
+  font-size: 22px;
+  margin-bottom: 1em;
+  text-align: center;
+}
+
+.gender-age-agetext {
+  display: flex;
+  flex-direction: row;
+}
+
+.email,
+.phone {
+  text-decoration: none;
+  color: #b8b8b8;
+}
+
+.btn {
+  text-align: center;
 }

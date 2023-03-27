@@ -17,7 +17,6 @@ import { CvCreatorService } from '../cv-creator.service';
   ],
 })
 export class CvCreatorComponent {
-  // form: FormGroup;
   isOnPreview: boolean = false;
   age: number;
   ageText: string = '';
@@ -27,17 +26,6 @@ export class CvCreatorComponent {
   thirdFormGroup: FormGroup;
 
   constructor(public dialog: MatDialog, private service: CvCreatorService) {
-    /*   this.form = new FormGroup({
-      surname: new FormControl('', [Validators.required]),
-      name: new FormControl('', [Validators.required]),
-
-      city: new FormControl('', [Validators.required]),
-      date: new FormControl('', [Validators.required]),
-      gender: new FormControl('', [Validators.required]),
-      exp: new FormControl('', [Validators.required]),
-      about: new FormControl('', []),
-    }); */
-
     this.firstFormGroup = new FormGroup({
       surname: new FormControl('', [Validators.required]),
       name: new FormControl('', [Validators.required]),
@@ -61,8 +49,6 @@ export class CvCreatorComponent {
     });
   }
 
-  // () => {}
-
   switchMode() {
     this.isOnPreview = !this.isOnPreview;
   }
@@ -75,50 +61,6 @@ export class CvCreatorComponent {
     );
   }
 
-  send() {
-    let cvValues = {
-      surname: this.firstFormGroup.controls['surname'].value,
-      name: this.firstFormGroup.controls['name'].value,
-      city: this.firstFormGroup.controls['city'].value,
-      gender: this.firstFormGroup.controls['gender'].value,
-      email: this.secondFormGroup.controls['email'].value,
-      phone: this.secondFormGroup.controls['phone'].value,
-      address: this.secondFormGroup.controls['address'].value,
-      date: this.secondFormGroup.controls['date'].value,
-      agreement: this.thirdFormGroup.controls['agreement'].value,
-      notification: this.thirdFormGroup.controls['notification'].value,
-    };
-    this.service.send(cvValues).subscribe();
-  }
-
-  /* 
-  openDialog() {
-    let config = {
-      width: '60vw',
-    };
-    const dialogRef = this.dialog.open(CityDialogComponent, config);
-    dialogRef.afterClosed().subscribe((city: string) => {
-      this.form.get('city')?.setValue(city);
-    });
-  } 
-
-  getDateRow() {
-    let text: string = '';
-    text = this.form.value['gender'] == 'Мужской' ? 'Родился: ' : 'Родилась: ';
-    text += this.form.value['date'].toLocaleDateString('ru-RU');
-    return text;
-  }
-
-  getAge() {
-    let today: Date = new Date();
-    let age;
-    if (this.form.value['date'] instanceof Date) {
-      age = today.getTime() - this.form.value['date'].getTime();
-      age = new Date(age).getFullYear() - 1970;
-    }
-    return age;
-  }*/
-
   openDialog() {
     let config = {
       width: '60vw',
@@ -127,19 +69,6 @@ export class CvCreatorComponent {
     dialogRef.afterClosed().subscribe((city: string) => {
       this.firstFormGroup.get('city')?.setValue(city);
     });
-  }
-
-  getDateRow() {
-    if (!this.firstFormGroup.value['gender']) {
-      return;
-    }
-    let text: string = '';
-    text =
-      this.firstFormGroup.value['gender'] == 'Мужской'
-        ? 'Родился: '
-        : 'Родилась: ';
-    text += this.secondFormGroup.value['date'].toLocaleDateString('ru-RU');
-    return text;
   }
 
   getGender() {
@@ -177,5 +106,18 @@ export class CvCreatorComponent {
       this.ageText = 'лет';
     }
     return this.ageText;
+  }
+
+  getDateRow() {
+    if (!this.firstFormGroup.value['gender']) {
+      return;
+    }
+    let text: string = '';
+    text =
+      this.firstFormGroup.value['gender'] == 'Мужской'
+        ? 'Родился: '
+        : 'Родилась: ';
+    text += this.secondFormGroup.value['date'].toLocaleDateString('ru-RU');
+    return text;
   }
 }
